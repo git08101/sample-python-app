@@ -1,8 +1,17 @@
+library identifier: 'sample-python-app@master', 
+        retriever: modernSCM([$class: 'GitSCMSource', credentialsId: '', remote: 'https://github.com/saurabhd2106/shared-library.git'])
+
 pipeline {
-//None parameter in the agent section means that no global agent will be allocated for the entire Pipeline’s
-//execution and that each stage directive must specify its own agent section.
     agent any
+
     stages {
+
+         stage('Audit tools') {                        
+            steps {
+                auditToolsLinux()
+            }
+        }
+
         stage('Build') {
             
             steps {
